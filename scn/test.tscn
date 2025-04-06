@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bysuvtmxbx5sp"]
+
+[ext_resource type="PackedScene" uid="uid://doktyhie3715c" path="res://obj/player/Player.tscn" id="1_6kuet"]
+[ext_resource type="Environment" uid="uid://cy8aihgudi8aq" path="res://res/environment.tres" id="2_3uadc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6kuet"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uadc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kuet"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3uadc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eabw5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="r" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.542295, -0.753211, 0.372276, 0, 0.443087, 0.896479, -0.840188, -0.486156, 0.240284, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_6kuet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54794, 0)
+
+[node name="No" type="StaticBody3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 16, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="No"]
+mesh = SubResource("PlaneMesh_6kuet")
+surface_material_override/0 = SubResource("StandardMaterial3D_3uadc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="No"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_6kuet")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_3uadc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3uadc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_eabw5")

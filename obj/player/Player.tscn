@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://doktyhie3715c"]
+
+[ext_resource type="Script" uid="uid://gp2j1mjqw01a" path="res://obj/player/player.gd" id="1_54q0a"]
+[ext_resource type="Texture2D" uid="uid://celm3j0fwwwrq" path="res://res/camera.png" id="2_p3tp6"]
+[ext_resource type="Texture2D" uid="uid://f60g6sh5rry6" path="res://res/frame.png" id="3_71tmc"]
+[ext_resource type="Texture2D" uid="uid://u1my54bupcuh" path="res://res/distance_meter_max.png" id="4_bl4g4"]
+[ext_resource type="Texture2D" uid="uid://bsn3qr6rlihwl" path="res://res/distance_meter_empty.png" id="4_mh0yf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rygtl"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_71tmc"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 6.0
+dof_blur_far_transition = 20.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 5.0
+dof_blur_near_transition = 20.0
+dof_blur_amount = 0.3
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_54q0a")
+camera_idle_overlay = ExtResource("2_p3tp6")
+camera_aim_overlay = ExtResource("3_71tmc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rygtl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.683967, 0)
+attributes = SubResource("CameraAttributesPractical_71tmc")
+current = true
+
+[node name="camera_active" type="CanvasLayer" parent="."]
+
+[node name="overlay" type="TextureRect" parent="camera_active"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_71tmc")
+stretch_mode = 5
+
+[node name="focus_bar" type="TextureProgressBar" parent="camera_active"]
+offset_left = 440.0
+offset_top = 550.0
+offset_right = 760.0
+offset_bottom = 570.0
+max_value = 32.0
+step = 0.25
+value = 5.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_mh0yf")
+texture_progress = ExtResource("4_bl4g4")
+
+[node name="camera_inactive" type="CanvasLayer" parent="."]
+
+[node name="overlay" type="TextureRect" parent="camera_inactive"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p3tp6")
+stretch_mode = 5
+
+[node name="DepthViewport" type="SubViewport" parent="."]
+render_target_update_mode = 4
