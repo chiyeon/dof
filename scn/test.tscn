@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bysuvtmxbx5sp"]
+[gd_scene load_steps=9 format=3 uid="uid://bysuvtmxbx5sp"]
 
 [ext_resource type="PackedScene" uid="uid://doktyhie3715c" path="res://obj/player/Player.tscn" id="1_6kuet"]
 [ext_resource type="Environment" uid="uid://cy8aihgudi8aq" path="res://res/environment.tres" id="2_3uadc"]
+[ext_resource type="Script" uid="uid://bl07fp07q46l4" path="res://src/target.gd" id="3_eabw5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6kuet"]
 
@@ -38,11 +39,42 @@ shape = SubResource("BoxShape3D_6kuet")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_3uadc")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Cube" type="StaticBody3D" parent="." groups=["target"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -8)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
 shape = SubResource("BoxShape3D_3uadc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
 mesh = SubResource("BoxMesh_eabw5")
+
+[node name="target" type="VisibleOnScreenNotifier3D" parent="Cube"]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+script = ExtResource("3_eabw5")
+
+[node name="Cube2" type="StaticBody3D" parent="." groups=["target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725712, 0.5, -10.9229)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube2"]
+shape = SubResource("BoxShape3D_3uadc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube2"]
+mesh = SubResource("BoxMesh_eabw5")
+
+[node name="target" type="VisibleOnScreenNotifier3D" parent="Cube2"]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+script = ExtResource("3_eabw5")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(7.3, 0, 0, 0, 2.9, 0, 0, 0, 1, 2.95329, 1.38353, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_3uadc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("BoxMesh_eabw5")
+
+[connection signal="screen_entered" from="Cube/target" to="Cube/target" method="_on_screen_entered"]
+[connection signal="screen_exited" from="Cube/target" to="Cube/target" method="_on_screen_exited"]
+[connection signal="screen_entered" from="Cube2/target" to="Cube2/target" method="_on_screen_entered"]
+[connection signal="screen_exited" from="Cube2/target" to="Cube2/target" method="_on_screen_exited"]

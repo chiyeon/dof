@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://doktyhie3715c"]
+[gd_scene load_steps=10 format=3 uid="uid://doktyhie3715c"]
 
 [ext_resource type="Script" uid="uid://gp2j1mjqw01a" path="res://obj/player/player.gd" id="1_54q0a"]
 [ext_resource type="Texture2D" uid="uid://celm3j0fwwwrq" path="res://res/camera.png" id="2_p3tp6"]
@@ -17,43 +17,6 @@ dof_blur_near_distance = 5.0
 dof_blur_near_transition = 20.0
 dof_blur_amount = 0.3
 
-[sub_resource type="Animation" id="Animation_fycr4"]
-resource_name = "flash"
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flash:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.307786, 16.5643),
-"update": 0,
-"values": [Color(1, 1, 1, 0.776471), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hfvoy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flash:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfwqt"]
-_data = {
-&"RESET": SubResource("Animation_hfvoy"),
-&"flash": SubResource("Animation_fycr4")
-}
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_54q0a")
 camera_idle_overlay = ExtResource("2_p3tp6")
@@ -62,18 +25,15 @@ camera_aim_overlay = ExtResource("3_71tmc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rygtl")
 
+[node name="camera_inactive" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_5g20p")]
+transform = Transform3D(0.75, 0, 0, 0, 0.709987, 0.241699, 0, -0.241699, 0.709987, -0.0346223, 0.285175, -0.542426)
+script = ExtResource("5_fycr4")
+target = NodePath("../Camera3D")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.683967, 0)
 attributes = SubResource("CameraAttributesPractical_71tmc")
 current = true
-
-[node name="CameraTarget" type="Node3D" parent="Camera3D"]
-transform = Transform3D(0.75, 0, 0, 0, 0.709987, 0.241699, 0, -0.241699, 0.709987, -0.0346223, -0.398792, -0.542426)
-
-[node name="camera_inactive" parent="Camera3D" node_paths=PackedStringArray("target") instance=ExtResource("4_5g20p")]
-transform = Transform3D(0.75, 0, 0, 0, 0.709987, 0.241699, 0, -0.241699, 0.709987, -0.0346223, -0.398792, -0.542426)
-script = ExtResource("5_fycr4")
-target = NodePath("../CameraTarget")
 
 [node name="camera_active" type="CanvasLayer" parent="."]
 
@@ -98,16 +58,6 @@ nine_patch_stretch = true
 texture_under = ExtResource("4_mh0yf")
 texture_progress = ExtResource("4_bl4g4")
 
-[node name="Flash" type="ColorRect" parent="camera_active"]
-modulate = Color(1, 1, 1, 0)
-offset_right = 800.0
-offset_bottom = 600.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="camera_active"]
-libraries = {
-&"": SubResource("AnimationLibrary_sfwqt")
-}
-
 [node name="nul" type="CanvasLayer" parent="."]
 visible = false
 
@@ -120,8 +70,7 @@ grow_vertical = 2
 texture = ExtResource("2_p3tp6")
 stretch_mode = 5
 
+[node name="DepthViewport" type="SubViewport" parent="."]
+render_target_update_mode = 4
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
-[node name="CameraShotTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="CameraShotTimer" to="." method="_on_camera_shot_timer_timeout"]

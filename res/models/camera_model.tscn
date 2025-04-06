@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnp3dthk3j6jq"]
+
+[ext_resource type="PackedScene" uid="uid://dutueanxhhe8x" path="res://res/models/camera.glb" id="1_6r8kh"]
+
+[node name="camera2" instance=ExtResource("1_6r8kh")]
+
+[node name="camera" parent="." index="0"]
+cast_shadow = 0
+
+[node name="dial1" parent="camera" index="0"]
+cast_shadow = 0
+
+[node name="dial2" parent="camera" index="1"]
+cast_shadow = 0
+
+[node name="Empty" parent="camera" index="2"]
+visible = false
+
+[node name="Empty_001" parent="camera" index="3"]
+visible = false
+
+[node name="lens" parent="camera" index="4"]
+cast_shadow = 0
+
+[node name="lever" parent="camera" index="5"]
+cast_shadow = 0
+
+[node name="shutter" parent="camera" index="6"]
+cast_shadow = 0

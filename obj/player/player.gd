@@ -3,6 +3,11 @@ extends CharacterBody3D
 @export var camera_idle_overlay: Texture2D
 @export var camera_aim_overlay: Texture2D
 
+var film_roll = []
+
+var shot_cooldown = 1.0
+var can_shoot = true
+
 # in meters
 var focus_plane_width = 0.5
 var min_focus_dist = 1.0
@@ -43,6 +48,9 @@ func _process(delta: float) -> void:
 	current_focus += focus_dir * delta * focus_adjust_speed
 	current_focus = clamp(current_focus, min_focus_dist, max_focus_dist)
 	update_focus()
+	
+	if Input.is_key_pressed(KEY_L):
+		save_film_roll()
 
 func _physics_process(delta: float) -> void:
 	velocity.y += -gravity * delta
@@ -76,16 +84,16 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("capture"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		elif is_in_camera:
+		elif is_in_camera and can_shoot:
 			take_picture()
 	elif event.is_action_pressed("toggle_cam"):
 		is_in_camera = !is_in_camera
 		enter_camera() if is_in_camera else exit_camera()
-	elif event.is_action("focus_in"):
+	elif event.is_action_pressed("focus_in"):
 		current_focus += 0.25
 		current_focus = clamp(current_focus, min_focus_dist, max_focus_dist)
 		update_focus()
-	elif event.is_action("focus_out"):
+	elif event.is_action_pressed("focus_out"):
 		current_focus -= 0.25
 		current_focus = clamp(current_focus, min_focus_dist, max_focus_dist)
 		update_focus()
@@ -93,7 +101,7 @@ func _input(event: InputEvent) -> void:
 func enter_camera():
 	$Camera3D.fov = camera_fov
 	$camera_active.visible = true
-	$camera_inactive.visible = false
+	$Camera3D/camera_inactive.visible = false
 	$Camera3D.attributes.dof_blur_far_enabled = true
 	$Camera3D.attributes.dof_blur_near_enabled = true
 	update_focus()
@@ -101,13 +109,55 @@ func enter_camera():
 func exit_camera():
 	$Camera3D.fov = normal_fov
 	$camera_active.visible = false
-	$camera_inactive.visible = true
+	$Camera3D/camera_inactive.visible = true
 	$Camera3D.attributes.dof_blur_far_enabled = false
 	$Camera3D.attributes.dof_blur_near_enabled = false
 
+func get_score(true_distance):
+	return max(0.0, 1.0 - abs(true_distance - current_focus) / max(true_distance, current_focus))
+
+func screenshot():
+	
+	$camera_active.visible = false
+	await RenderingServer.frame_post_draw
+	var viewport = get_viewport()
+	var img = viewport.get_texture().get_image()
+	$camera_active.visible = true
+	
+	return img
+
 func take_picture():
-	var ss = get_viewport().get_texture().get_image()
-	ss.save_jpg(".")
+	can_shoot = false
+	$CameraShotTimer.start(shot_cooldown)
+	var targets = Targets.filter_potential($Camera3D)
+	var scores = []
+	
+	for t in targets:
+		var dist = $Camera3D.global_position.distance_to(t[1])
+		#print("Object " + t[0].name + " was " + str(dist) + "m away and focus was " + str(current_focus) + "m")
+		#print("Score: " + str(get_score(dist)))
+		scores.append(get_score(dist))
+	
+	film_roll.append({
+		"target_scores": scores,
+		"image": await screenshot()
+	})
+	
+	$camera_active/AnimationPlayer.play("flash")
+
+func save_film_roll():
+	var odir = DirAccess.open("user://")
+	odir.make_dir("reels")
+	
+	var time = Time.get_datetime_string_from_system().replace(":", "-")
+	
+	var dir = DirAccess.open("user://reels")
+	dir.make_dir(time)
+	
+	var key = 0
+	for i in film_roll:
+		i.image.save_jpg("user://reels/" + time + "/photo_" + str(key) + ".jpg", 1.0)
+		key += 1
 
 func update_focus():
 	if is_in_camera:
@@ -124,3 +174,8 @@ func update_focus():
 		
 		# update focus meter in ui
 		$camera_active/focus_bar.value = current_focus
+
+
+func _on_camera_shot_timer_timeout() -> void:
+	# reset
+	can_shoot = true
