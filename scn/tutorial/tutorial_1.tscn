@@ -1,0 +1,226 @@
+[gd_scene load_steps=17 format=3 uid="uid://bgfn8wvaa0hj8"]
+
+[ext_resource type="PackedScene" uid="uid://doktyhie3715c" path="res://obj/player/Player.tscn" id="2_ty64w"]
+[ext_resource type="PackedScene" uid="uid://ii5tdvqelhvo" path="res://res/models/sign.glb" id="3_obcge"]
+[ext_resource type="PackedScene" uid="uid://dkbl0hevsegct" path="res://res/models/table.glb" id="4_jy2qt"]
+[ext_resource type="Script" uid="uid://v24fj8g40o8e" path="res://src/ShowScore.gd" id="4_nq54e"]
+[ext_resource type="PackedScene" uid="uid://btlw6jv0twtyj" path="res://res/models/vase.glb" id="5_o7wpq"]
+[ext_resource type="Script" uid="uid://bl07fp07q46l4" path="res://src/target.gd" id="6_o7wpq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7wpq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ty64w"]
+material = SubResource("StandardMaterial3D_o7wpq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obcge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcsqa"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o7wpq"]
+size = Vector3(0.0860596, 2.89746, 0.698578)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nq54e"]
+size = Vector3(1.59119, 5.28796, 0.0393372)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o7wpq"]
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.0168984
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_nq54e"]
+sky_material = SubResource("ProceduralSkyMaterial_o7wpq")
+
+[sub_resource type="Environment" id="Environment_h541f"]
+background_mode = 2
+sky = SubResource("Sky_nq54e")
+ambient_light_color = Color(0.454524, 0.454524, 0.454524, 1)
+tonemap_mode = 2
+fog_mode = 1
+fog_density = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nq54e"]
+
+[node name="Tutorial1" type="Node3D"]
+
+[node name="r" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.542295, -0.753211, 0.372276, 0, 0.443087, 0.896479, -0.840188, -0.486156, 0.240284, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+shadow_normal_bias = 0.0
+
+[node name="No" type="StaticBody3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 56, 0, 0, -49.574)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="No"]
+mesh = SubResource("PlaneMesh_ty64w")
+surface_material_override/0 = SubResource("StandardMaterial3D_obcge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="No"]
+shape = SubResource("BoxShape3D_bcsqa")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="No"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.727367, 0.475992, 0.634018)
+shape = SubResource("BoxShape3D_o7wpq")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="No"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732893, 0.475992, 0.634018)
+shape = SubResource("BoxShape3D_o7wpq")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="No"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00129884, 0.662698, 0.966339)
+shape = SubResource("BoxShape3D_nq54e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="No"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00129884, 0.662698, 0.274866)
+shape = SubResource("BoxShape3D_nq54e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h541f")
+
+[node name="Player" parent="." instance=ExtResource("2_ty64w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.12795)
+shots_left = 8
+
+[node name="sign" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.24109, -0.119372, 0.0891324, 0.119677, 1.24426, 0, -0.088723, 0.00853367, 1.24682, -0.12917, 0.949229, -2.39646)
+
+[node name="Label3D" type="Label3D" parent="sign"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "RIGHT CLICK
+to AIM"
+
+[node name="sign2" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.11087, 0.00288439, -0.573106, -0.00312081, 1.25, 0.000241917, 0.573105, 0.00121584, 1.11088, 2.03121, 1.00057, -5.86543)
+
+[node name="Label3D" type="Label3D" parent="sign2"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Q/E or SCROLL
+to FOCUS"
+
+[node name="sign3" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.15434, -0.109837, 0.466834, 0.118308, 1.24439, 0.00024192, -0.46476, 0.0439606, 1.15955, -2.59984, 1.00678, -8.3189)
+
+[node name="Label3D" type="Label3D" parent="sign3"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "LEFT CLICK to
+take photo"
+
+[node name="sign4" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.22988, 0.124803, -0.185243, -0.123445, 1.24375, 0.0183639, 0.186151, 0.00022552, 1.23606, 0.587237, 1.00057, -10.5703)
+
+[node name="Label3D" type="Label3D" parent="sign4"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Adjust the
+depth of field!"
+
+[node name="sign9" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.20295, -0.120997, 0.317459, 0.104102, 1.24313, 0.0793349, -0.323394, -0.04991, 1.20641, -1.98155, 1.00057, -12.9494)
+
+[node name="Label3D" type="Label3D" parent="sign9"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "The more in focus
+the higher the 
+photo score"
+font_size = 24
+
+[node name="sign5" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.18755, 0.0573567, -0.385924, -0.0617134, 1.24847, -0.00435228, 0.385251, 0.0231881, 1.18893, 1.3003, 0.975225, -15.1512)
+
+[node name="Label3D" type="Label3D" parent="sign5"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "You can take up to
+16 shots"
+font_size = 24
+
+[node name="sign6" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.14593, -0.171127, 0.469101, 0.183039, 1.23652, 0.00394714, -0.464583, 0.0650727, 1.15863, -1.14028, 1.02004, -17.6289)
+
+[node name="Label3D" type="Label3D" parent="sign6"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Certain objects award
+differing points
+based on the object
+and how clear the photo"
+font_size = 23
+
+[node name="sign8" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.18595, 0.0521128, -0.391542, -0.029944, 1.24737, 0.0753226, 0.393858, -0.0620837, 1.1847, 0.706023, 1.02004, -19.2617)
+
+[node name="Label3D" type="Label3D" parent="sign8"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Photo composition
+has no effect on score.
+Do what you want!"
+font_size = 23
+
+[node name="sign11" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.21862, -0.0735296, 0.268455, 0.0544074, 1.24527, 0.0941011, -0.272974, -0.0800537, 1.2172, -1.27068, 1.02004, -21.3835)
+
+[node name="Label3D" type="Label3D" parent="sign11"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "But if you photograph
+the same object, only
+your \"best\" photo is
+scored overall"
+font_size = 23
+
+[node name="sign7" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.15949, 0.0769823, 0.460604, -0.0473772, 1.24593, -0.0889727, -0.464583, 0.0650727, 1.15863, -2.54855, 1.02004, -25.4464)
+
+[node name="Label3D" type="Label3D" parent="sign7"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Try on this
+->"
+
+[node name="sign10" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.24817, 0.0437754, -0.0516283, -0.0473772, 1.24593, -0.0889727, 0.0483442, 0.0907989, 1.24576, -0.0882874, 1.02004, -31.1547)
+
+[node name="Label3D" type="Label3D" parent="sign10"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "When you finish,
+develop your reel
+to get your score
+and see your photos!"
+font_size = 24
+
+[node name="sign12" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.24817, 0.0437754, -0.0516283, -0.0473772, 1.24593, -0.0889727, 0.0483442, 0.0907989, 1.24576, -0.0882874, 1.02004, -33.4261)
+
+[node name="Label3D" type="Label3D" parent="sign12"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Press L to develop
+your reel!
+
+(no going back)"
+font_size = 24
+
+[node name="SpecialSIgn" parent="." instance=ExtResource("3_obcge")]
+transform = Transform3D(1.15949, 0.0769823, 0.460604, -0.0473772, 1.24593, -0.0889727, -0.464583, 0.0650727, 1.15863, -3.78506, 1.02004, -25.0908)
+
+[node name="Label3D" type="Label3D" parent="SpecialSIgn"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.000718787, 0.110776, 0.0690112)
+text = "Current Score:
+0.0"
+script = ExtResource("4_nq54e")
+
+[node name="table" parent="." instance=ExtResource("4_jy2qt")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 3.4181, 1.74106, -25.494)
+
+[node name="vase" parent="table" groups=["target"] instance=ExtResource("5_o7wpq")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -0.012632, -0.51661, 0.0120697)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="table/vase"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table/vase/StaticBody3D"]
+shape = SubResource("CylinderShape3D_nq54e")
+
+[node name="target" type="VisibleOnScreenNotifier3D" parent="table/vase/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834122, 0)
+aabb = AABB(-0.25, -1, -0.256, 0.5, 2, 0.5)
+script = ExtResource("6_o7wpq")
+
+[connection signal="photo_taken" from="Player" to="SpecialSIgn/Label3D" method="_on_player_photo_taken"]
+[connection signal="screen_entered" from="table/vase/StaticBody3D/target" to="table/vase/StaticBody3D/target" method="_on_screen_entered"]
+[connection signal="screen_exited" from="table/vase/StaticBody3D/target" to="table/vase/StaticBody3D/target" method="_on_screen_exited"]

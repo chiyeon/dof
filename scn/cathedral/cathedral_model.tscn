@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://crs20hmvurabg"]
+
+[ext_resource type="PackedScene" uid="uid://cx8ly2jgh5cci" path="res://res/models/cathedral.glb" id="1_yuw7b"]
+[ext_resource type="Material" uid="uid://dca2blyav1htl" path="res://scn/cathedral/windows.tres" id="2_78ctt"]
+[ext_resource type="Material" uid="uid://dcfdbxrd38btx" path="res://scn/cathedral/walls.tres" id="3_iki4y"]
+[ext_resource type="Material" uid="uid://cfbj4k3o17e2r" path="res://scn/cathedral/floor.tres" id="4_jhnly"]
+[ext_resource type="Material" uid="uid://d4cpucjdfao7w" path="res://scn/cathedral/grass.tres" id="5_jhnly"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oulbo"]
+albedo_color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[node name="cathedral" instance=ExtResource("1_yuw7b")]
+
+[node name="Cathedral" parent="." index="0"]
+cast_shadow = 2
+surface_material_override/0 = ExtResource("2_78ctt")
+surface_material_override/1 = ExtResource("3_iki4y")
+surface_material_override/2 = ExtResource("4_jhnly")
+
+[node name="WindowGrates" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oulbo")
+
+[node name="Windows" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_78ctt")
+
+[node name="terrain" parent="." index="3"]
+material_override = ExtResource("5_jhnly")
+
+[node name="Circle" parent="." index="4"]
+material_override = ExtResource("5_jhnly")

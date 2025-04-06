@@ -1,2 +1,44 @@
 # DEPTH of FIELD
-walk aro
+final update
+
+- small open world, X number (24?) of things to take pictures of and X total exposures
+   - idea being it is possible (but hard) to clear things in one go
+- each item has a score category (1, 3, 5, 10) that adds score * photo score to your total score
+   - only goes up once per item, cant spam same item
+- items aren't revealed, but you get a hint when you take photos of one
+- once u run out of exposures, you develop and get
+   - overall score
+   - look at photos
+   - time completed
+   - completion log (out of X items, blank out not got items)
+
+- takes place in ethereal room/house maybe?
+
+1. 10 points in window, cat appears rarely and is scared away if u get too close
+2. 10 points birds come by regularly and are scared away if you get too close
+3. 10 points wierd shadow creature hiding somewhere in teh level (maybe diff eveyrtime)
+4. 10 points something that moves around randomly in the scene, butterfly
+5. 5 points paper airplane flying in a regular pattern above
+6. 5 points swing moving by itself outside
+7. 5 points floating island outside
+8. 3 points falling star
+9. 3 points spooky ghost
+10. 
+
+
+3 - bird
+5 - paper airplane
+5 - butterfly
+1 - notebook
+3 - ghost
+1 - statue 1
+1 - statue 2
+1 - pink tree
+1 - godot cube
+1 - monke
+1 - vase
+1 - modern art 1
+1 - modern art 2
+1 - bosetta bone
+1 - play pen
+1 - default cube

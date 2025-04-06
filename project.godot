@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="dof"
-run/main_scene="uid://bysuvtmxbx5sp"
+run/main_scene="uid://dvxdcgba2qifs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,9 +21,9 @@ Targets="*res://src/targets.gd"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
-window/stretch/aspect="ignore"
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [input]
 

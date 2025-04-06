@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj3qjmxg54dng"]
+
+[ext_resource type="PackedScene" uid="uid://t8hjaisy4vc5" path="res://res/models/Swingset.glb" id="1_l8btm"]
+[ext_resource type="PackedScene" uid="uid://dlr0emnjdag0m" path="res://obj/target.tscn" id="2_q5ix8"]
+[ext_resource type="PackedScene" uid="uid://q5plroy5mkrv" path="res://res/models/ghost_model.tscn" id="3_wsbi2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wsbi2"]
+radius = 1.84467
+
+[sub_resource type="Animation" id="Animation_l8btm"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1.84672, 1.5529, 0.803831),
+"update": 0,
+"values": [Vector3(-0.784124, 0, 0), Vector3(0.785398, 0, 0), Vector3(-0.784124, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_002:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00872665, 0, 0), Vector3(-0.00349066, 0, 0), Vector3(0.00872665, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q5ix8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.784124, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_002:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsbi2"]
+_data = {
+&"Idle": SubResource("Animation_l8btm"),
+&"RESET": SubResource("Animation_q5ix8")
+}
+
+[node name="Swingset" instance=ExtResource("1_l8btm")]
+
+[node name="Cube" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.708007, 0.706205, 0, -0.706205, 0.708007, 2, 2.01041, 0)
+
+[node name="SwingGhost" type="StaticBody3D" parent="Cube/Cube_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/Cube_001/SwingGhost" index="0"]
+transform = Transform3D(1.085, 0, 0, 0, 1.065, 0, 0, 0, 1.775, 0, 0, 0)
+shape = SubResource("SphereShape3D_wsbi2")
+
+[node name="target" parent="Cube/Cube_001/SwingGhost" index="1" instance=ExtResource("2_q5ix8")]
+aabb = AABB(-1, -0.792834, -1, 2, 1.58567, 2)
+value = 3
+
+[node name="ghost2" parent="Cube/Cube_001" index="1" instance=ExtResource("3_wsbi2")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 5.96046e-08, 1.371, 0, -0.15837, -0.450983)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_wsbi2")
+}
+autoplay = "Idle"

@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvxdcgba2qifs"]
+
+[ext_resource type="Script" uid="uid://bilua71fki6ka" path="res://scn/menu.gd" id="1_7oe3k"]
+[ext_resource type="PackedScene" uid="uid://bycmytxfojwv5" path="res://res/models/playpen.glb" id="1_egyie"]
+[ext_resource type="PackedScene" uid="uid://dutueanxhhe8x" path="res://res/models/camera.glb" id="2_7oe3k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_egyie"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_7oe3k"]
+font_size = 21
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_egyie"]
+sky_top_color = Color(0.543706, 0.849006, 0.911811, 1)
+sky_horizon_color = Color(0.921569, 1, 1, 1)
+ground_bottom_color = Color(0.341133, 0.546766, 0.377841, 1)
+ground_horizon_color = Color(0.921569, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_7oe3k"]
+sky_material = SubResource("ProceduralSkyMaterial_egyie")
+
+[sub_resource type="Environment" id="Environment_4ihby"]
+background_mode = 2
+sky = SubResource("Sky_7oe3k")
+ambient_light_source = 2
+ambient_light_color = Color(0.605274, 0.605274, 0.605274, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7oe3k")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 766.0
+offset_bottom = 138.0
+text = "DEPTH OF FIELD"
+label_settings = SubResource("LabelSettings_egyie")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Made in 24 hour for Ludum Dare 57"
+label_settings = SubResource("LabelSettings_7oe3k")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -67.0
+offset_right = 310.0
+offset_bottom = 67.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="Tutorial" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Tutorial"
+
+[node name="Quit" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[node name="playpen" parent="." instance=ExtResource("1_egyie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.283682, 0)
+
+[node name="camera2" parent="." instance=ExtResource("2_7oe3k")]
+transform = Transform3D(-0.342033, 0.1942, 0.919402, -0.231386, 0.930881, -0.282704, -0.910755, -0.309431, -0.273456, -0.865178, 0.476866, -0.0823866)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0923705, 0, -0.995725, 0, 1, 0, 0.995725, 0, -0.0923705, -3.91, 0.795, -0.24)
+fov = 25.6
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4ihby")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.770513, 0.302195, -0.561237, 0, 0.880477, 0.474088, 0.637424, 0.365291, -0.67842, 0, 0, 0)
+shadow_enabled = true
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

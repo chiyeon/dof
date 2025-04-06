@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx278vo8gynpb"]
+
+[ext_resource type="PackedScene" uid="uid://bxex0qu4yops2" path="res://res/models/tree.glb" id="1_kadge"]
+[ext_resource type="Material" uid="uid://dq7a7pecowq35" path="res://scn/cathedral/wood.tres" id="2_yudlh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j86gh"]
+albedo_color = Color(0.918026, 0.651578, 0.917854, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kadge"]
+albedo_color = Color(0.918026, 0.651578, 0.917854, 1)
+
+[node name="tree" instance=ExtResource("1_kadge")]
+
+[node name="Tree" parent="." index="0"]
+material_override = ExtResource("2_yudlh")
+
+[node name="Icosphere" parent="Tree" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_j86gh")
+
+[node name="Icosphere_001" parent="Tree" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kadge")

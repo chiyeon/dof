@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://4hgf1firweuh"]
+
+[ext_resource type="PackedScene" uid="uid://c0ko07cp55mp5" path="res://res/models/butterfly.glb" id="1_kb8kb"]
+
+[sub_resource type="Animation" id="Animation_kb8kb"]
+resource_name = "flap"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder/Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.307785, 0.307785, 0.307785),
+"update": 0,
+"values": [Vector3(-1.5708, 0.513144, 0), Vector3(-1.5708, -0.800635, 0), Vector3(-1.5708, 0.513144, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder/Cube_001:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.307785, 0.307785, 0.307785),
+"update": 0,
+"values": [Vector3(-1.5708, -0.629802, 0), Vector3(-1.5708, 0.864811, 0), Vector3(-1.5708, -0.629802, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_db8qf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder/Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0.513144, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder/Cube_001:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, -0.629802, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxwac"]
+_data = {
+&"RESET": SubResource("Animation_db8qf"),
+&"flap": SubResource("Animation_kb8kb")
+}
+
+[node name="butterfly" instance=ExtResource("1_kb8kb")]
+
+[node name="Cube" parent="Cylinder" index="0"]
+transform = Transform3D(20.0373, -11.2909, -4.93541e-07, 0, -1.00534e-06, 22.9995, -11.2909, -20.0373, -8.75858e-07, -0.0379075, 0.549666, -0.473843)
+
+[node name="Cube_001" parent="Cylinder" index="1"]
+transform = Transform3D(18.5869, 13.5464, 5.9213e-07, 0, -1.00534e-06, 22.9995, 13.5464, -18.5869, -8.1246e-07, -0.0379075, 0.549666, -0.473843)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_wxwac")
+}
+autoplay = "flap"

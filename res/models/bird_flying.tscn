@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://jwpwu1jnc3fj"]
+
+[ext_resource type="PackedScene" uid="uid://bbxkgur4348um" path="res://res/models/Bird.glb" id="1_ma03j"]
+[ext_resource type="Material" uid="uid://tb1vjtucidcu" path="res://scn/cathedral/bird_body.tres" id="2_82n1t"]
+[ext_resource type="Material" uid="uid://ccyqqk7vli7xt" path="res://scn/cathedral/bird_eyes.tres" id="3_h0bbl"]
+[ext_resource type="Material" uid="uid://dak4p0g0hxvqh" path="res://scn/cathedral/bird_wingtips.tres" id="3_kqhat"]
+[ext_resource type="Material" uid="uid://bqi4g0hp8qcsk" path="res://scn/cathedral/bird_legs.tres" id="4_kqhat"]
+
+[node name="Bird" instance=ExtResource("1_ma03j")]
+
+[node name="BirdSitting" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+
+[node name="BirdFLying" parent="." index="1"]
+transform = Transform3D(0.1, 0, 0, 0, 0.0592177, -0.0805808, 0, 0.0805808, 0.0592177, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_82n1t")
+surface_material_override/1 = ExtResource("3_kqhat")
+
+[node name="eyes_001" parent="BirdFLying" index="0"]
+material_override = ExtResource("3_h0bbl")
+
+[node name="Legs_001" parent="BirdFLying" index="1"]
+material_override = ExtResource("4_kqhat")

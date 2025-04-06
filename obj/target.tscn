@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlr0emnjdag0m"]
+
+[ext_resource type="Script" uid="uid://bl07fp07q46l4" path="res://src/target.gd" id="1_kgptn"]
+
+[node name="target" type="VisibleOnScreenEnabler3D" groups=["target"]]
+script = ExtResource("1_kgptn")
+
+[connection signal="screen_entered" from="." to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

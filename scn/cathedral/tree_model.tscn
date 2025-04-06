@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpiddg8et7541"]
+
+[ext_resource type="PackedScene" uid="uid://bxex0qu4yops2" path="res://res/models/tree.glb" id="1_f7u50"]
+[ext_resource type="Material" uid="uid://dq7a7pecowq35" path="res://scn/cathedral/wood.tres" id="2_flgnn"]
+[ext_resource type="Material" uid="uid://c0vk8lv7r67af" path="res://scn/cathedral/leaves.tres" id="3_0yjev"]
+
+[node name="tree" instance=ExtResource("1_f7u50")]
+
+[node name="Tree" parent="." index="0"]
+material_override = ExtResource("2_flgnn")
+
+[node name="Icosphere" parent="Tree" index="0"]
+material_override = ExtResource("3_0yjev")
+
+[node name="Icosphere_001" parent="Tree" index="1"]
+material_override = ExtResource("3_0yjev")
