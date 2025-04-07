@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://2wwj4odcuefo"]
+[gd_scene load_steps=59 format=3 uid="uid://2wwj4odcuefo"]
 
 [ext_resource type="PackedScene" uid="uid://crs20hmvurabg" path="res://scn/cathedral/cathedral_model.tscn" id="1_arvtl"]
 [ext_resource type="PackedScene" uid="uid://doktyhie3715c" path="res://obj/player/Player.tscn" id="2_ab8lg"]
@@ -107,81 +107,6 @@ point_count = 2
 [sub_resource type="SphereShape3D" id="SphereShape3D_hq310"]
 radius = 4.396
 
-[sub_resource type="Animation" id="Animation_auwm0"]
-resource_name = "flyaway"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BirdModel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("target:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape3D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlyingBird:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.63902, 2.63902),
-"update": 0,
-"values": [0.0063, 1.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Path3D/PathFollow3D:use_model_front")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_hq310"]
 length = 0.001
 tracks/0/type = "value"
@@ -243,6 +168,81 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0063]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Path3D/PathFollow3D:use_model_front")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_auwm0"]
+resource_name = "flyaway"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirdModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("target:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlyingBird:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.63902, 2.63902),
+"update": 0,
+"values": [0.0063, 1.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -361,15 +361,6 @@ height = 1.22957
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkai8"]
 size = Vector3(1.92725, 1.62744, 1.39648)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_5xyod"]
-radius = 0.35
-
-[sub_resource type="BoxMesh" id="BoxMesh_3fvxp"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_j03qn"]
-radius = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j03qn"]
 height = 0.424561
@@ -542,7 +533,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61187, 12.1964, 0.582026)
 curve = SubResource("Curve3D_j03qn")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="AirplanePath"]
-transform = Transform3D(-0.870385, -0.228155, 0.436265, 5.96033e-08, 0.886096, 0.46342, -0.492326, 0.403357, -0.771275, 3.72529e-09, 0.955, 7.45058e-09)
+transform = Transform3D(-0.870385, -0.228155, 0.436265, -7.45041e-09, 0.886096, 0.463421, -0.492326, 0.403357, -0.771275, -7.45058e-09, 0.955, 7.45058e-09)
 progress = 61.5794
 script = ExtResource("5_7qpky")
 flight_speed = 0.66
@@ -555,7 +546,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.76532, 11.9931, 0.682823)
 curve = SubResource("Curve3D_ug2rc")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="ButterflyPath"]
-transform = Transform3D(0.149188, -0.122087, -0.981227, -3.72524e-09, 0.992337, -0.123469, 0.988796, 0.0184203, 0.148046, -11.3418, -0.189135, -9.99721)
+transform = Transform3D(0.149188, -0.122087, -0.981227, 7.45049e-09, 0.992337, -0.123468, 0.988796, 0.0184203, 0.148046, -11.3418, -0.189135, -9.99721)
 script = ExtResource("5_7qpky")
 flight_speed = 1.1
 
@@ -658,7 +649,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("15_13rgs")
 
 [node name="PaperAirplaneTarget" type="StaticBody3D" parent="." groups=["target"]]
-transform = Transform3D(-0.870385, -0.228155, 0.436265, 5.96033e-08, 0.886096, 0.46342, -0.492326, 0.403357, -0.771275, 3.61187, 13.1514, 0.582026)
+transform = Transform3D(-0.870385, -0.228155, 0.436265, -7.45041e-09, 0.886096, 0.463421, -0.492326, 0.403357, -0.771275, 3.61187, 13.1514, 0.582026)
 
 [node name="target" type="VisibleOnScreenNotifier3D" parent="PaperAirplaneTarget"]
 aabb = AABB(-0.568193, -0.147785, -0.922078, 1.13639, 0.295569, 1.12443)
@@ -672,7 +663,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CapsuleShape3D_ug2rc")
 
 [node name="Butterfly" type="StaticBody3D" parent="." groups=["target"]]
-transform = Transform3D(0.149188, -0.122087, -0.981227, -3.72524e-09, 0.992337, -0.123469, 0.988796, 0.0184203, 0.148046, -4.57652, 11.8039, -9.31438)
+transform = Transform3D(0.149188, -0.122087, -0.981227, 7.45049e-09, 0.992337, -0.123468, 0.988796, 0.0184203, 0.148046, -4.57648, 11.804, -9.31439)
 
 [node name="target" type="VisibleOnScreenNotifier3D" parent="Butterfly"]
 aabb = AABB(-0.568193, -0.147785, -0.922078, 1.13639, 0.295569, 1.12443)
@@ -701,14 +692,14 @@ enable_node_path = NodePath("../BirdModel")
 value = 3
 
 [node name="FlyingBird" parent="BirdSitting" instance=ExtResource("10_hq310")]
-transform = Transform3D(0.693521, 0.0396859, -0.308135, 0.00773908, 0.750826, 0.11423, 0.310588, -0.107324, 0.685197, -0.0223856, -0.047401, -0.12709)
+transform = Transform3D(0.693521, 0.0396858, -0.308135, 0.00773909, 0.750826, 0.11423, 0.310588, -0.107324, 0.685197, -0.0223856, -0.047401, -0.12709)
 visible = false
 
 [node name="Path3D" type="Path3D" parent="BirdSitting"]
 curve = SubResource("Curve3D_7764c")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="BirdSitting/Path3D"]
-transform = Transform3D(0.912561, 0.052249, -0.405459, 0.0101834, 0.988511, 0.150309, 0.408684, -0.141299, 0.901614, -0.0223849, -0.0474011, -0.127091)
+transform = Transform3D(0.912562, 0.0522489, -0.405458, 0.0101834, 0.988511, 0.150309, 0.408683, -0.141299, 0.901615, -0.0223848, -0.047401, -0.127091)
 progress = 0.0594223
 use_model_front = true
 
@@ -823,54 +814,6 @@ shape = SubResource("CapsuleShape3D_hrtth")
 
 [node name="target" parent="playpen/RedShovel" instance=ExtResource("9_auwm0")]
 aabb = AABB(-0.291495, -0.502241, -0.209843, 0.58299, 1.00643, 0.419687)
-
-[node name="StandCube" parent="." instance=ExtResource("20_w1wro")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2.47399, -0.462848, 0.19715)
-visible = false
-
-[node name="Label3D" type="Label3D" parent="StandCube"]
-transform = Transform3D(2.4424e-08, 0.792162, -0.610311, 1.38506e-07, 0.610311, 0.792162, 1, -1.03879e-07, -9.48129e-08, -0.738222, 1.45655, -3.2464e-08)
-text = "Default Cube
-
-
-Default Text"
-font_size = 16
-vertical_alignment = 0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="StandCube"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StandCube/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.279541, 0.826183, 0)
-shape = SubResource("BoxShape3D_pkai8")
-
-[node name="DefaultCube" type="StaticBody3D" parent="StandCube"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25567, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StandCube/DefaultCube"]
-transform = Transform3D(1, 0, -7.24754e-13, 0, 1, 0, 7.24754e-13, 0, 1, 0, -0.0707188, 0)
-shape = SubResource("SphereShape3D_5xyod")
-
-[node name="target" parent="StandCube/DefaultCube" instance=ExtResource("9_auwm0")]
-transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -0.768779, 0)
-aabb = AABB(-0.290058, 0.305054, -0.27246, 0.580117, 0.73242, 0.544921)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StandCube/DefaultCube"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073139, 0)
-mesh = SubResource("BoxMesh_3fvxp")
-skeleton = NodePath("../..")
-
-[node name="DefaultCube2" type="StaticBody3D" parent="StandCube"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0462894, 2.11359, 0.0215406)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StandCube/DefaultCube2"]
-transform = Transform3D(1, 0, -1.19371e-12, 0, 1, 0, 1.19371e-12, 0, 1, -0.0651855, 0.17459, 0)
-shape = SubResource("SphereShape3D_j03qn")
-
-[node name="target" parent="StandCube/DefaultCube2" instance=ExtResource("9_auwm0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.774194, 0)
-aabb = AABB(-0.563391, 0.094291, -0.570387, 1.12678, 1.31215, 1.14077)
-enable_node_path = NodePath("../../DefaultCube2")
 
 [node name="StandVase" parent="." instance=ExtResource("20_w1wro")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6.25092, -0.491063, 0.267507)

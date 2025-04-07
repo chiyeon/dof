@@ -36,7 +36,7 @@ var air_forward_acceleration = 3.0
 var air_sideways_acceleration = 5.0
 var air_deceleration = 2.0
 
-var mouse_sens = 0.0005
+var mouse_sens = 0.00125
 var max_vert_rot = 70
 
 var is_in_camera = false
@@ -280,8 +280,10 @@ func update_focus():
 		# makes it so we smoothly blur
 		$Camera3D.attributes.dof_blur_far_distance = current_focus + focus_plane_width
 		$Camera3D.attributes.dof_blur_near_distance = current_focus
-		$Camera3D.attributes.dof_blur_far_transition = max_focus_dist - current_focus + blur_buffer
+		$Camera3D.attributes.dof_blur_far_transition = 15
+		#$Camera3D.attributes.dof_blur_far_transition = max_focus_dist - current_focus + blur_buffer
 		$Camera3D.attributes.dof_blur_near_transition = current_focus - min_focus_dist + 1
+		#$Camera3D.attributes.dof_blur_near_transition = current_focus - min_focus_dist + 1
 		
 		# update focus meter in ui
 		focusbar.value = current_focus
